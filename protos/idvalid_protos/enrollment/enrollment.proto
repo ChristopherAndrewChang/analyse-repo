@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package evercore.idvalid.enrollment;
+
+message ConfirmRequest {
+  // enrollment.models.Otp.id
+  string id = 1;
+  // enrollment.models.Otp.device_id
+  string device_id = 2;
+  // enrollment.models.Otp.user_agent
+  string user_agent = 3;
+
+  // input
+  bytes signature = 4;
+}
+
+message ConfirmResponse {
+  bool success = 1;
+}
+
+message GetEmailRequest {
+  string id = 1;
+  // enrollment.models.Otp.state
+  string state = 2;
+}
+
+message GetEmailResponse {
+  string email = 1;
+}
+
+service Enrollment {
+  rpc Confirm(ConfirmRequest) returns (ConfirmResponse);
+  rpc GetEmail(GetEmailRequest) returns (GetEmailResponse);
+}

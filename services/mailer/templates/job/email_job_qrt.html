@@ -1,0 +1,81 @@
+{% extends "mailer/base.html" %}
+
+{% block hello %}
+  Hi {{ user.first_name }},
+{% endblock %}
+
+{% block paragraph1 %}
+  You have new job to quote, as detailed below.
+{% endblock %}
+
+{% block content %}
+<table class="purchase" width="100%" cellpadding="0" cellspacing="0" style="width: 100%; margin: 0; padding: 10px 0; -premailer-width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0;">
+  <tr>
+    <td colspan="2" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif;">
+      <table width="100%" cellpadding="15" cellspacing="0">
+        <tr>
+          <th colspan="2" class="purchase_heading" style="padding: 0px 0; border-bottom: 1px solid #0d0d0d; font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif;">
+            <h2 style="margin-top: 0; margin-bottom: 6px; color: #333333; font-size: 16px; font-weight: bold; text-align: center;">Job Detail</h2>
+          </th>
+        </tr>
+        <tr>
+          <td width="50%" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; vertical-align: top;">
+            <table>
+              <tr>
+                <td class="purchase_field" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-top: 0px; color: #403f3f !important; font-size: 12px;">Job ID</td>
+              </tr>
+              <tr>
+                <td class="purchase_item" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-bottom: 0px; color: #0d0d0d; font-size: 15px; line-height: 18px;">{{ job.subID }}</td>
+              </tr>
+            </table>
+          </td>
+          <td width="50%" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; vertical-align: top;">
+            <table>
+              <tr>
+                <td class="purchase_field" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-top: 0px; color: #403f3f !important; font-size: 12px;">Job Name</td>
+              </tr>
+              <tr>
+                <td class="purchase_item" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-bottom: 0px; color: #0d0d0d; font-size: 15px; line-height: 18px;">{{ job.name }}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td width="50%" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; vertical-align: top;">
+            <table>
+              <tr>
+                <td class="purchase_field" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-top: 0px; color: #403f3f !important; font-size: 12px;">Job Ref</td>
+              </tr>
+              <tr>
+                <td class="purchase_item" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-bottom: 0px; color: #0d0d0d; font-size: 15px; line-height: 18px;">{{ job.reference|default:"-" }}</td>
+              </tr>
+            </table>
+          </td>
+          <td width="50%" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; vertical-align: top;">
+            <table>
+              <tr>
+                <td class="purchase_field" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-top: 0px; color: #403f3f !important; font-size: 12px;">Reps By</td>
+              </tr>
+              <tr>
+                <td class="purchase_item" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-bottom: 0px; color: #0d0d0d; font-size: 15px; line-height: 18px;">{{ job.reps_by.fullname|default:"-" }}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+{% endblock %}
+
+{% block paragraph2 %}
+  Please click the button below to open job details that require review or confirmation.
+{% endblock %}
+
+{% block last_content %}
+<div class="align-center" style="text-align: center;">
+  <a href="{{ FE_job_detail }}" class="button button--orange" style="background-color: #3869D4; border-top: 10px solid #3869D4; border-right: 18px solid #3869D4; border-bottom: 10px solid #3869D4; border-left: 18px solid #3869D4; display: inline-block; color: #FFF; text-decoration: none; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); -webkit-text-size-adjust: none; box-sizing: border-box; background-color: #ea672d; border-top: 10px solid #ea672d; border-right: 18px solid #ea672d; border-bottom: 10px solid #ea672d; border-left: 18px solid #ea672d; color: #ea672d;">
+    <span style="color: white !important;">Open Detail</span>
+  </a>
+</div>
+{% endblock %}

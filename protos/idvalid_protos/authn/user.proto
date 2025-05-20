@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package idvalid.rpc.authn;
+
+import "models/authn.proto";
+
+message CreateRequest {
+  idvalid.authn.CreateUser data = 1;
+}
+
+message CreateResponse {
+  string id = 1;
+}
+
+service User {
+  rpc Create(CreateRequest) returns (CreateResponse);
+}

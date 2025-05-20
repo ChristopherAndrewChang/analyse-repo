@@ -1,0 +1,27 @@
+from idvalid_integration.tasks import constants
+
+
+OTP_USAGE = "email-enrollment"
+
+
+EXCHANGE_PUBLISHER = constants.EXCHANGE_PUBLISHER
+
+QUEUE_CONSUME = "account.consume"
+
+ROUTING_CONSUME_ENROLLMENT = constants.ROUTING_ENROLLMENT
+TASK_CONSUME_ENROLLMENT_PUBLISH = constants.TASK_CONSUME_ENROLLMENT_PUBLISH
+
+ROUTING_CONSUME_OTP_PUBLISH = (
+    f"{constants.ROUTING_OTP_PUBLISH_PREFIX}.{OTP_USAGE}")
+TASK_CONSUME_OTP_PUBLISH = constants.TASK_CONSUME_OTP_PUBLISH
+
+# ROUTING_CONSUME_OTP_APPLY = (
+#     f"{constants.ROUTING_OTP_APPLY_PREFIX}.{OTP_USAGE}")
+# TASK_CONSUME_OTP_APPLY = constants.TASK_CONSUME_OTP_APPLY
+
+
+EXCHANGE = constants.EXCHANGE_ACCOUNT
+
+QUEUE_SIGNAL = "account.signal"
+ROUTING_SIGNAL = "account.signal"
+TASK_SIGNAL_ENROLLMENT_POST_CREATE = "idvalid.account.signal.enrollment.post_create"

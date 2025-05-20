@@ -1,0 +1,25 @@
+from idvalid_integration.tasks import constants
+
+
+EXCHANGE_PUBLISHER = constants.EXCHANGE_PUBLISHER
+
+QUEUE_CONSUME = "idvalid.tenant.consume"
+
+ROUTING_CONSUME_AUTH_ACCOUNT_CREATE = (
+    f"{constants.ROUTING_AUTH_ACCOUNT_PUBLISH_PREFIX}.create")
+TASK_CONSUME_AUTH_ACCOUNT_CREATE = constants.TASK_CONSUME_AUTH_ACCOUNT_CREATE
+ROUTING_CONSUME_AUTH_USER_ACTIVE_FLAG = (
+    f"{constants.ROUTING_AUTH_USER_PUBLISH_PREFIX}.active-flag")
+TASK_CONSUME_AUTH_USER_ACTIVE_FLAG = constants.TASK_CONSUME_AUTH_USER_ACTIVE_FLAG
+ROUTING_CONSUME_AUTH_PROFILE_UPDATE = (
+    f"{constants.ROUTING_AUTH_PROFILE_PUBLISH_PREFIX}.update")
+TASK_CONSUME_AUTH_PROFILE_UPDATE = constants.TASK_CONSUME_AUTH_PROFILE_UPDATE
+
+
+EXCHANGE = constants.EXCHANGE_TENANT
+
+QUEUE_SIGNAL = "idvalid.tenant.signal"
+ROUTING_SIGNAL = "tenant.signal"
+TASK_SIGNAL_TENANT_POST_SAVE = "idvalid.tenant.signal.tenant.post_save"
+TASK_SIGNAL_TENANT_USER_POST_SAVE = "idvalid.tenant.signal.tenant_user.post_save"
+TASK_SIGNAL_TENANT_USER_POST_DELETE = "idvalid.tenant.signal.tenant_user.post_delete"

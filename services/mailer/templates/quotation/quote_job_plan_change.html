@@ -1,0 +1,48 @@
+{% extends "mailer/base.html" %}
+
+{% block hello %} {% endblock %}
+
+{% block paragraph1 %}
+  <h3>Job Plan Quote Changed</h3>
+  {{ merchant.name }} has changed plans of quotation for job: {{ job.subID }} - {{ job.name }}.
+{% endblock %}
+
+{% block content %}
+  <table style="width: 100%;">
+    <tr>
+      <td style="width: 16%; vertical-align: top;">File Type</td>
+      <td style="width: 1%; vertical-align: top;">:</td>
+      <td style="vertical-align: top;">{{ file_type_display }}</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; {% if new_plan %}font-weight: bold;{% endif %}">
+        New File
+      </td>
+      <td style="vertical-align: top;">:</td>
+      <td style="vertical-align: top; {% if new_plan %}font-weight: bold;{% endif %}">
+        {{ new_plan.filename|default:"-" }}
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; {% if old_plan and not new_plan %}font-weight: bold;{% endif %}">
+        Old File
+      </td>
+      <td style="vertical-align: top;">:</td>
+      <td style="vertical-align: top; {% if old_plan and not new_plan %}font-weight: bold;{% endif %}">
+        {{ old_plan.filename|default:"-" }}
+      </td>
+    </tr>
+  </table>
+{% endblock %}
+
+{% block paragraph2 %}
+  Please click the button below to open thread.
+{% endblock %}
+
+{% block last_content %}
+<div class="align-center" style="text-align: center;">
+  <a href="{{ thread_url }}" class="button button--orange" style="background-color: #3869D4; border-top: 10px solid #3869D4; border-right: 18px solid #3869D4; border-bottom: 10px solid #3869D4; border-left: 18px solid #3869D4; display: inline-block; color: #FFF; text-decoration: none; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); -webkit-text-size-adjust: none; box-sizing: border-box; background-color: #ea672d; border-top: 10px solid #ea672d; border-right: 18px solid #ea672d; border-bottom: 10px solid #ea672d; border-left: 18px solid #ea672d; color: #ea672d;">
+    <span style="color: white !important;">Open Thread</span>
+  </a>
+</div>
+{% endblock %}

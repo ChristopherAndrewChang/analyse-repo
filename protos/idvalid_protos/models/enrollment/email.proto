@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package idvalid.enrollment;
+
+import "google/protobuf/timestamp.proto";
+
+message Email {
+  string id = 1;
+  string email = 2;
+  bool is_registered = 3;
+  google.protobuf.Timestamp registered_date = 4;
+  google.protobuf.Timestamp created = 5;
+}
+
+message Enrollment {
+  string id = 1;
+  idvalid.enrollment.Email email = 2;
+  string state = 3;
+  string device_id = 4;
+  string user_agent = 5;
+  google.protobuf.Timestamp created = 6;
+}

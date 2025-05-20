@@ -1,0 +1,55 @@
+{% extends "mailer/base.html" %}
+
+{% block hello %}
+  Hi {{ user.first_name }}
+{% endblock %}
+
+{% block paragraph1 %}
+  {{ job.subID }} - {{ job.name }}<br>
+  Job file <b>{{ file_type_display }}</b> has been <b>{{ answer_display|lower }}</b>. Please check plans & docs and history.
+{% endblock %}
+
+{% block content %}
+  <table style="width: 100%;">
+    <tr>
+      <td style="width: 16%; vertical-align: top;">File Type</td>
+      <td style="width: 1%; vertical-align: top;">:</td>
+      <td style="vertical-align: top;">{{ file_type_display }}</td>
+    </tr>
+    <tr>
+      <td style="width: 16%; vertical-align: top;">Answer</td>
+      <td style="width: 1%; vertical-align: top;">:</td>
+      <td style="vertical-align: top;">{{ answer_display }}</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; {% if new_file %}font-weight: bold;{% endif %}">
+        New File
+      </td>
+      <td style="vertical-align: top;">:</td>
+      <td style="vertical-align: top; {% if new_file %}font-weight: bold;{% endif %}">
+        {{ new_file.filename|default:"-" }}
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; {% if old_file and not new_file %}font-weight: bold;{% endif %}">
+        Old File
+      </td>
+      <td style="vertical-align: top;">:</td>
+      <td style="vertical-align: top; {% if old_file and not new_file %}font-weight: bold;{% endif %}">
+        {{ old_file.filename|default:"-" }}
+      </td>
+    </tr>
+  </table>
+{% endblock %}
+
+{% block paragraph2 %}
+  Please click the button below to open job details.
+{% endblock %}
+
+{% block last_content %}
+<div class="align-center" style="text-align: center;">
+  <a href="{{ FE_job_detail }}" class="button button--orange" style="background-color: #3869D4; border-top: 10px solid #3869D4; border-right: 18px solid #3869D4; border-bottom: 10px solid #3869D4; border-left: 18px solid #3869D4; display: inline-block; color: #FFF; text-decoration: none; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); -webkit-text-size-adjust: none; box-sizing: border-box; background-color: #ea672d; border-top: 10px solid #ea672d; border-right: 18px solid #ea672d; border-bottom: 10px solid #ea672d; border-left: 18px solid #ea672d; color: #ea672d;">
+    <span style="color: white !important;">Open Job</span>
+  </a>
+</div>
+{% endblock %}

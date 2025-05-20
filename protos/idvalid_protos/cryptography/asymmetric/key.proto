@@ -1,0 +1,162 @@
+syntax = "proto3";
+
+package evercore.idvalid.cryptography.asymmetric;
+
+/**
+ * Enum representing different cryptographic algorithms.
+ */
+enum Algorithm {
+  /**
+   * Unspecified algorithm.
+   */
+  ALGORITHM_UNSPECIFIED = 0;
+
+  /**
+   * RSA (Rivest-Shamir-Adleman) algorithm.
+   */
+  ALGORITHM_RSA = 1;
+
+  /**
+   * DSA (Digital Signature Algorithm).
+   */
+  ALGORITHM_DSA = 2;
+
+  /**
+   * ECDSA (Elliptic Curve Digital Signature Algorithm).
+   */
+  ALGORITHM_ECDSA = 3;
+
+  /**
+   * Ed25519 (Edwards-Curve Digital Signature Algorithm).
+   */
+  ALGORITHM_ED25519 = 4;
+}
+
+/**
+ * Message representing a pair of cryptographic keys.
+ */
+message KeyPair {
+  /**
+   * The private key in bytes format.
+   */
+  bytes private_key = 1;
+
+  /**
+   * The public key in bytes format.
+   */
+  bytes public_key = 2;
+}
+
+/**
+ * Request message for generating cryptographic key pairs or signatures.
+ */
+message GenerateRequest {
+  /**
+   * Optional data to be signed when generating a key pair or signature.
+   */
+  optional bytes data = 1;
+
+  /**
+   * Optional cryptographic algorithm to use for key generation or signing.
+   */
+  optional Algorithm algorithm = 2;
+}
+
+/**
+ * Response message containing the generated key pair and optionally a signature.
+ */
+message GenerateResponse {
+  /**
+   * The generated pair of private and public keys.
+   */
+  KeyPair pair = 1;
+
+  /**
+   * Optional signature generated, applicable when requested.
+   */
+  optional bytes signature = 2;
+}
+
+/**
+ * Request message for signing data using a private key.
+ */
+message SignRequest {
+  /**
+   * The private key to use for signing the data.
+   */
+  bytes private_key = 1;
+
+  /**
+   * The data to be signed.
+   */
+  bytes data = 2;
+}
+
+/**
+ * Response message containing the generated signature.
+ */
+message SignResponse {
+  /**
+   * The generated signature for the provided data.
+   */
+  bytes signature = 1;
+}
+
+/**
+ * Request message for verifying a signature using a public key.
+ */
+message VerifyRequest {
+  /**
+   * The public key to use for verifying the signature.
+   */
+  bytes public_key = 1;
+
+  /**
+   * The data that was signed.
+   */
+  bytes data = 2;
+
+  /**
+   * The signature to verify.
+   */
+  bytes signature = 3;
+}
+
+/**
+ * Response message indicating whether the signature is valid.
+ */
+message VerifyResponse {
+  /**
+   * True if the signature is valid, False otherwise.
+   */
+  bool valid = 1;
+}
+
+/**
+ * Service for cryptographic operations involving key pairs and signatures.
+ */
+service Key {
+  /**
+   * Generates a key pair and optionally a signature.
+   *
+   * @param GenerateRequest The request message containing data and algorithm details.
+   * @return GenerateResponse The response message containing the generated key pair and signature.
+   */
+  rpc Generate (GenerateRequest) returns (GenerateResponse);
+
+  /**
+   * Signs data using a private key.
+   *
+   * @param SignRequest The request message containing the private key, data, and optional algorithm.
+   * @return SignResponse The response message containing the generated signature.
+   */
+  rpc Sign (SignRequest) returns (SignResponse);
+
+  /**
+   * Verifies a signature using a public key.
+   *
+   * @param VerifyRequest The request message containing the public key, data, signature, and optional algorithm.
+   * @return VerifyResponse The response message indicating whether the signature is valid.
+   */
+  rpc Verify (VerifyRequest) returns (VerifyResponse);
+}

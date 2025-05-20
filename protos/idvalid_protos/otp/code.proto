@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package evercore.idvalid.otp;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+message CreateRequest {
+    message EmailOtp {
+        string value = 1;
+    }
+
+    message SmsOtp {
+        string value = 1;
+    }
+
+    message AppOtp {
+        string value = 1;
+    }
+
+    oneof recipient {
+        EmailOtp email = 1;
+        SmsOtp sms = 2;
+        AppOtp app = 3;
+    }
+
+    google.protobuf.Duration expires_in = 4;
+    string usage = 5;
+    string issuer = 6;
+    string ref_id = 7;
+
+    // need to add presence
+    optional string suppress = 8;
+
+    string device_id = 9;
+}
+
+message CreateResponse {
+    string id = 1;
+    bytes key = 2;
+    google.protobuf.Timestamp expires = 3;
+}
+
+message ConfirmRequest {
+    string id = 1;
+}
+
+message ConfirmResponse {
+    bool success = 1;
+}
+
+service Code {
+    rpc Create(CreateRequest) returns (CreateResponse);
+    rpc Confirm(ConfirmRequest) returns (ConfirmResponse);
+}

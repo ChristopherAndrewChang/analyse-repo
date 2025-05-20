@@ -1,0 +1,1 @@
+DEFAULT_TEMPLATE_MIME_TYPE = "text/plain"

@@ -1,0 +1,43 @@
+{% extends "mailer/base.html" %}
+
+{% block hello %}
+  Hi {{ user.first_name }},
+{% endblock %}
+
+{% block paragraph1 %}
+  You have been invited by {{ merchant.name }}. Open app to get started.
+  {% if account.used_default_password %}
+    <div class="default-password">
+      Login using email and default password below.
+      <table style="width: 100%; padding: 6px 10px;">
+        <tr>
+          <td style="font-weight: bold;">Enrollment</td>
+          <td>:</td>
+          <td>{{ account.email }}</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold;">Password</td>
+          <td>:</td>
+          <td>{{ account.email }}</td>
+        </tr>
+      </table>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="align-center" style="text-align: center;">
+  <a href="{{ FE_url }}" class="button button--orange" style="background-color: #3869D4; border-top: 10px solid #3869D4; border-right: 18px solid #3869D4; border-bottom: 10px solid #3869D4; border-left: 18px solid #3869D4; display: inline-block; color: #FFF; text-decoration: none; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); -webkit-text-size-adjust: none; box-sizing: border-box; background-color: #ea672d; border-top: 10px solid #ea672d; border-right: 18px solid #ea672d; border-bottom: 10px solid #ea672d; border-left: 18px solid #ea672d; color: #ea672d;">
+    <span style="color: white !important;">Open App</span>
+  </a>
+</div>
+{% endblock %}
+
+{% block paragraph2 %}
+<div style="margin-top: 30px;">
+  If you require assistance or have questions, please contact your admin immediately.
+</div>
+{% endblock %}
+
+{% block last_content %}
+{% endblock %}

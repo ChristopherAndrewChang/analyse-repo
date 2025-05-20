@@ -1,0 +1,20 @@
+{% extends "mailer/base.html" %}
+
+{% block hello %} {% endblock %}
+
+{% block paragraph1 %}
+  Failed to send quotation job {{ job.subID }} - {{ job.name }} to <u>{{ supplier.name }}</u>.<br>
+  Please open job outsourcing and it <b>should be resend.</b>
+{% endblock %}
+
+{% block content %} {% endblock %}
+
+{% block paragraph2 %} {% endblock %}
+
+{% block last_content %}
+<div class="align-center" style="text-align: center;">
+  <a href="{{ FE_job_detail }}" class="button button--orange" style="background-color: #3869D4; border-top: 10px solid #3869D4; border-right: 18px solid #3869D4; border-bottom: 10px solid #3869D4; border-left: 18px solid #3869D4; display: inline-block; color: #FFF; text-decoration: none; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); -webkit-text-size-adjust: none; box-sizing: border-box; background-color: #ea672d; border-top: 10px solid #ea672d; border-right: 18px solid #ea672d; border-bottom: 10px solid #ea672d; border-left: 18px solid #ea672d; color: #ea672d;">
+    <span style="color: white !important;">{{ button_label|default:"Open Job" }}</span>
+  </a>
+</div>
+{% endblock %}

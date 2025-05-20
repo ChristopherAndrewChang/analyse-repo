@@ -1,0 +1,2 @@
+class ClaimNotProvided(Exception):
+    pass

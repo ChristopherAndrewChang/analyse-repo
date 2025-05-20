@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package idvalid.otp;
+
+import "google/protobuf/timestamp.proto";
+
+enum Method {
+  METHOD_MAIL = 0;
+  METHOD_SMS = 1;
+  METHOD_WHATSAPP = 2;
+  METHOD_IDVALID = 3;
+}
+
+message CreateOtp {
+  string object_id = 1;
+  string usage = 2;
+  string ref_id = 3;
+  Method method = 4;
+  string device_id = 5;
+  string user_agent = 6;
+  google.protobuf.Timestamp expires = 7;
+  oneof recipient {
+    string email_address = 8;
+    string phone_number = 9;
+    string user_id = 10;
+  }
+  uint32 owner_id = 11;
+}
+
+message Otp {
+  string id = 1;
+  string object_id = 2;
+  string usage = 3;
+  string ref_id = 4;
+  google.protobuf.Timestamp expires = 5;
+  string token = 6;
+  bool applied = 7;
+  google.protobuf.Timestamp applied_time = 8;
+  google.protobuf.Timestamp created = 9;
+}

@@ -1,0 +1,1 @@
+[{"model": "otp.recipienttype", "pk": 1, "fields": {"name": "email"}}, {"model": "otp.recipienttype", "pk": 2, "fields": {"name": "phone"}}, {"model": "otp.recipienttype", "pk": 3, "fields": {"name": "app"}}]

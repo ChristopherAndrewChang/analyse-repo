@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package idvalid.authn;
+
+message CreateUser {
+  string email = 1;
+  string username = 2;
+  string password = 3;
+  string name = 4;
+  string account_id = 5;
+  string client_id = 6;
+}
+
+message UserLoggedIn {
+  uint64 user_id = 1;
+  uint64 platform_id = 2;
+  string device_id = 3;
+  string user_agent = 4;
+  uint64 session_id = 5;
+  string ip_address = 6;
+}
+
+message Platform {
+  uint64 id = 1;
+  string subid = 2;
+  string name = 3;
+  string type = 4;
+}
+
+message Session {
+  uint64 id = 1;
+  string subid = 2;
+  uint64 user_id = 3;
+  uint64 platform_id = 4;
+  string device_id = 5;
+}
+
+message User {
+  uint64 id = 1;
+  string subid = 2;
+  bool is_active = 3;
+  bool is_staff = 4;
+  bool is_superuser = 5;
+}
+
+message UserActiveFlag {
+  uint64 user_id = 1;
+  bool is_active = 2;
+}
+
+message UserProfile {
+  uint64 user_id = 1;
+  string name = 2;
+}
+
+message Account {
+  User user = 1;
+  UserProfile profile = 2;
+}

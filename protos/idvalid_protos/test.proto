@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package evercore.idvalid;
+
+
+import "google/protobuf/duration.proto";
+
+
+enum Enum {
+  ENUM_UNSPECIFIED = 0;
+  ENUM_SPECIFIED = 1;
+  ENUM_CUSTOM = 2;
+}
+
+
+message OtherMessage {
+  string name = 1;
+}
+
+
+message Message {
+  double double_value = 1;
+  float float_value = 2;
+  int32 int32_value = 3;
+  int64 int64_value = 4;
+  uint32 uint32_value = 5;
+  uint64 uint64_value = 6;
+  sint32 sint32_value = 7;
+  sint64 sint64_value = 8;
+  fixed32 fixed32_value = 9;
+  fixed64 fixed64_value = 10;
+  sfixed32 sfixed32_value = 11;
+  sfixed64 sfixed64_value = 12;
+  bool bool_value = 13;
+  string string_value = 14;
+  bytes bytes_value = 15;
+
+  Enum enum_value = 16;
+  OtherMessage other_message_value = 17;
+  google.protobuf.Duration wkt_value = 18;
+
+  repeated bool repeated_bool_value = 19;
+  repeated Enum repeated_enum_value = 20;
+  repeated OtherMessage repeated_other_message_value = 21;
+  repeated google.protobuf.Duration repeated_wkt_value = 22;
+
+  oneof oneof_value {
+    bool oneof_one_value = 23;
+    string oneof_two_value = 24;
+    bytes oneof_three_value = 25;
+  }
+
+  map<string, bool> map_str_bool_value = 26;
+
+  optional double optional_double_value = 27;
+  optional float optional_float_value = 28;
+  optional int32 optional_int32_value = 29;
+  optional int64 optional_int64_value = 30;
+  optional uint32 optional_uint32_value = 31;
+  optional uint64 optional_uint64_value = 32;
+  optional sint32 optional_sint32_value = 33;
+  optional sint64 optional_sint64_value = 34;
+  optional fixed32 optional_fixed32_value = 35;
+  optional fixed64 optional_fixed64_value = 36;
+  optional sfixed32 optional_sfixed32_value = 37;
+  optional sfixed64 optional_sfixed64_value = 38;
+  optional bool optional_bool_value = 39;
+  optional string optional_string_value = 40;
+  optional bytes optional_bytes_value = 41;
+}

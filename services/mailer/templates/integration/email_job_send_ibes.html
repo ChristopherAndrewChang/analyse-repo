@@ -1,0 +1,141 @@
+{% extends "mailer/base.html" %}
+
+{% block hello %}
+  Dear IBES Team,
+{% endblock %}
+
+{% block paragraph1 %}
+  You have a new job, as detailed below.
+{% endblock %}
+
+{% block content %}
+<table class="purchase" width="100%" cellpadding="0" cellspacing="0" style="width: 100%; margin: 0; padding: 10px 0; -premailer-width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0;">
+  <tr>
+    <td colspan="2" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif;">
+      <table width="100%" cellpadding="15" cellspacing="0">
+        <tr>
+          <th colspan="2" class="purchase_heading" style="padding: 0px 0; border-bottom: 1px solid #0d0d0d; font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif;">
+            <h2 style="margin-top: 0; margin-bottom: 6px; color: #333333; font-size: 16px; font-weight: bold; text-align: center;">Job Detail</h2>
+          </th>
+        </tr>
+        <tr>
+          <td width="50%" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; vertical-align: top;">
+            <table>
+              <tr>
+                <td class="purchase_field" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-top: 0px; color: #403f3f !important; font-size: 12px;">Job ID</td>
+              </tr>
+              <tr>
+                <td class="purchase_item" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-bottom: 0px; color: #0d0d0d; font-size: 15px; line-height: 18px;">{{ job.subID }}</td>
+              </tr>
+            </table>
+          </td>
+          <td width="50%" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; vertical-align: top;">
+            <table>
+              <tr>
+                <td class="purchase_field" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-top: 0px; color: #403f3f !important; font-size: 12px;">Job Name</td>
+              </tr>
+              <tr>
+                <td class="purchase_item" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-bottom: 0px; color: #0d0d0d; font-size: 15px; line-height: 18px;">{{ job.name }}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td width="50%" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; vertical-align: top;">
+            <table>
+              <tr>
+                <td class="purchase_field" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-top: 0px; color: #403f3f !important; font-size: 12px;">Merchant</td>
+              </tr>
+              <tr>
+                <td class="purchase_item" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-bottom: 0px; color: #0d0d0d; font-size: 15px; line-height: 18px;">{{ job.merchant.name }}</td>
+              </tr>
+            </table>
+          </td>
+          <td width="50%" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; vertical-align: top;">
+            <table>
+              <tr>
+                <td class="purchase_field" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-top: 0px; color: #403f3f !important; font-size: 12px;">Merchant Reference</td>
+              </tr>
+              <tr>
+                <td class="purchase_item" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-bottom: 0px; color: #0d0d0d; font-size: 15px; line-height: 18px;">{{ job.reference|default:"-" }}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td width="50%" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; vertical-align: top;">
+            <table>
+              <tr>
+                <td class="purchase_field" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-top: 0px; color: #403f3f !important; font-size: 12px;">Quotation Date</td>
+              </tr>
+              <tr>
+                <td class="purchase_item" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-bottom: 0px; color: #0d0d0d; font-size: 15px; line-height: 18px;">{{ job.received_date_str }}</td>
+              </tr>
+            </table>
+          </td>
+          <td width="50%" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; vertical-align: top;">
+            <table>
+              <tr>
+                <td class="purchase_field" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-top: 0px; color: #403f3f !important; font-size: 12px;">Must Finish By</td>
+              </tr>
+              <tr>
+                <td class="purchase_item" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-bottom: 0px; color: red; font-size: 15px; line-height: 18px;">{{ job.requested_finish_date_str }}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        {% if job.takeoff_type and job.takeoff_type.is_require_spec %}
+          <tr>
+            <td width="100%" colspan="2" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; vertical-align: top;">
+              <table>
+                <tr>
+                  <td class="purchase_field" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-top: 0px; color: #403f3f !important; font-size: 12px;">Takeoff Type</td>
+                </tr>
+                <tr>
+                  <td class="purchase_item" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-bottom: 0px; color: #0d0d0d; font-size: 15px; line-height: 18px;">{{ job.takeoff_type.name }}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td width="100%" colspan="2" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; vertical-align: top;">
+              <table>
+                <tr>
+                  <td class="purchase_field" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-top: 0px; color: #403f3f !important; font-size: 12px;">Takeoff Spec</td>
+                </tr>
+                <tr>
+                  <td class="purchase_item" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-bottom: 0px; color: #0d0d0d; font-size: 15px; line-height: 18px; white-space: pre;">{{ job.takeoff_spec|default:"-" }}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        {% endif %}
+        <tr>
+          <td width="100%" colspan="2" style="font-size: 16px; font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; vertical-align: top;">
+            <table>
+              <tr>
+                <td class="purchase_field" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-top: 0px; color: #403f3f !important; font-size: 12px;">Special Notes</td>
+              </tr>
+              <tr>
+                <td class="purchase_item" style="font-family: &quot;Nunito Sans&quot;, Helvetica, Arial, sans-serif; padding: 0px 0; padding-bottom: 0px; color: #0d0d0d; font-size: 15px; line-height: 18px; white-space: pre;">{{ job.note|default:"-" }}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+{% endblock %}
+
+{% block paragraph2 %}
+  Please click the button below to retrieve job on IBESv3 app.
+{% endblock %}
+
+{% block last_content %}
+<div class="align-center" style="text-align: center;">
+  <a href="{{ FE_ibes_add_job }}" class="button button--orange" style="background-color: #3869D4; border-top: 10px solid #3869D4; border-right: 18px solid #3869D4; border-bottom: 10px solid #3869D4; border-left: 18px solid #3869D4; display: inline-block; color: #FFF; text-decoration: none; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); -webkit-text-size-adjust: none; box-sizing: border-box; background-color: #ea672d; border-top: 10px solid #ea672d; border-right: 18px solid #ea672d; border-bottom: 10px solid #ea672d; border-left: 18px solid #ea672d; color: #ea672d;">
+    <span style="color: white !important;">Open Detail</span>
+  </a>
+</div>
+{% endblock %}
